@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura & Grain – Fine Art Photography Studio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-brown: #83462e;
+      --dark-text: #1b1c1a;
+      --medium-text: #53433e;
+      --light-text: #86736d;
+      --divider-color: #d4cbc7;
+      --white: #ffffff;
+      --off-white: #f5f3f0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+      color: var(--dark-text);
+      background-color: var(--white);
+      line-height: 1.6;
+    }
+
+    /* Header Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--white);
+      border-bottom: 1px solid var(--divider-color);
+      padding: 20px 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 80px;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .logo-name {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.18px;
+      color: var(--dark-text);
+    }
+
+    .logo-tagline {
+      font-size: 11px;
+      color: var(--light-text);
+      letter-spacing: 0.5px;
+    }
+
+    nav {
+      display: flex;
+      gap: 48px;
+      list-style: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--dark-text);
+      font-size: 16px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--primary-brown);
+    }
+
+    .header-cta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-secondary {
+      padding: 12px 20px;
+      background-color: transparent;
+      border: 1px solid var(--dark-text);
+      color: var(--dark-text);
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--dark-text);
+      color: var(--white);
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1280&h=800&fit=crop') center/cover no-repeat, linear-gradient(135deg, rgba(131, 70, 46, 0.7) 0%, rgba(27, 28, 26, 0.5) 100%);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: var(--white);
+      padding: 72px;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 736"><rect fill="%23f5f3f0" width="1280" height="736"/></svg>');
+      background-size: cover;
+      opacity: 0.15;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 768px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 24px;
+      background-color: rgba(255, 255, 255, 0.15);
+      padding: 8px 16px;
+      border-radius: 24px;
+    }
+
+    .hero h1 {
+      font-size: 64px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.64px;
+      margin-bottom: 32px;
+      font-family: 'Georgia', serif;
+    }
+
+    .hero p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 48px;
+      opacity: 0.95;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      padding: 16px 32px;
+      background-color: var(--primary-brown);
+      color: var(--white);
+      text-decoration: none;
+      border: none;
+      border-radius: 4px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      background-color: #6b3626;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary-light {
+      padding: 16px 32px;
+      background-color: transparent;
+      border: 2px solid var(--white);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-secondary-light:hover {
+      background-color: var(--white);
+      color: var(--primary-brown);
+    }
+
+    /* Section Container */
+    section {
+      padding: 88px 72px;
+    }
+
+    .section-header {
+      margin-bottom: 56px;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      color: var(--primary-brown);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--primary-brown);
+      padding-left: 0;
+    }
+
+    .section-title {
+      font-size: 36px;
+      font-weight: 600;
+      line-height: 1.3;
+      letter-spacing: -0.36px;
+      margin-bottom: 24px;
+      font-family: 'Georgia', serif;
+    }
+
+    .section-subtitle {
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--medium-text);
+      max-width: 672px;
+    }
+
+    /* About Section */
+    .about-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .about-image {
+      width: 100%;
+      height: 450px;
+      background: linear-gradient(135deg, #d4cbc7 0%, #e8e3de 100%);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-text h3 {
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 32px;
+      font-family: 'Georgia', serif;
+    }
+
+    .about-text p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--medium-text);
+      margin-bottom: 24px;
+    }
+
+    /* Achievements Section */
+    .achievements {
+      background-color: var(--off-white);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .stat-card {
+      background-color: var(--white);
+      padding: 32px;
+      border-radius: 4px;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    }
+
+    .stat-number {
+      font-size: 40px;
+      font-weight: 600;
+      color: var(--primary-brown);
+      line-height: 1.2;
+      margin-bottom: 16px;
+      font-family: 'Georgia', serif;
+    }
+
+    .stat-label {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--dark-text);
+      margin-bottom: 8px;
+    }
+
+    .stat-description {
+      font-size: 12px;
+      color: var(--light-text);
+      line-height: 1.5;
+    }
+
+    /* Gallery Section */
+    .gallery-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 56px;
+    }
+
+    .gallery-filters {
+      display: flex;
+      gap: 8px;
+    }
+
+    .filter-btn {
+      padding: 8px 16px;
+      background-color: transparent;
+      border: 1px solid var(--divider-color);
+      color: var(--dark-text);
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background-color: var(--dark-text);
+      color: var(--white);
+      border-color: var(--dark-text);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 56px;
+    }
+
+    .gallery-item {
+      position: relative;
+      background: linear-gradient(135deg, #d4cbc7 0%, #e8e3de 100%);
+      border-radius: 4px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+    }
+
+    .gallery-item:nth-child(1) {
+      grid-column: span 2;
+      aspect-ratio: auto;
+      height: 300px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, transparent 60%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+      color: var(--white);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .gallery-description {
+      font-size: 13px;
+      line-height: 1.4;
+      opacity: 0.9;
+    }
+
+    /* Form Section */
+    .form-section {
+      background-color: var(--off-white);
+    }
+
+    .form-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: stretch;
+    }
+
+    .form-image {
+      background: linear-gradient(135deg, #d4cbc7 0%, #e8e3de 100%);
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px;
+      color: var(--white);
+    }
+
+    .form-image img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .form-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 100%);
+      z-index: 1;
+    }
+
+    .availability-badge {
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+    }
+
+    .availability-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background-color: #4ade80;
+      border-radius: 50%;
+    }
+
+    .form-image-note {
+      position: relative;
+      z-index: 2;
+      text-align: left;
+    }
+
+    .form-image-note h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .form-image-note p {
+      font-size: 13px;
+      line-height: 1.6;
+      opacity: 0.95;
+    }
+
+    .form-card {
+      background-color: var(--white);
+      padding: 56px;
+      border-radius: 4px;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-header {
+      margin-bottom: 48px;
+    }
+
+    .form-header h2 {
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 24px;
+      font-family: 'Georgia', serif;
+    }
+
+    .form-description {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--medium-text);
+    }
+
+    .form-group {
+      margin-bottom: 32px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--dark-text);
+      margin-bottom: 8px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--divider-color);
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: inherit;
+      transition: border-color 0.3s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary-brown);
+      box-shadow: 0 0 0 3px rgba(131, 70, 46, 0.1);
+    }
+
+    .form-input::placeholder {
+      color: var(--light-text);
+    }
+
+    .form-submit {
+      padding: 16px 32px;
+      background-color: var(--primary-brown);
+      color: var(--white);
+      border: none;
+      border-radius: 4px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .form-submit:hover:not(:disabled) {
+      background-color: #6b3626;
+      transform: translateY(-2px);
+    }
+
+    .form-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .form-note {
+      font-size: 12px;
+      color: var(--light-text);
+      text-align: center;
+    }
+
+    .form-message {
+      padding: 12px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      text-align: center;
+      font-size: 13px;
+      display: none;
+    }
+
+    .form-message.success {
+      background-color: #dcfce7;
+      color: #166534;
+      display: block;
+    }
+
+    .form-message.error {
+      background-color: #fee2e2;
+      color: #991b1b;
+      display: block;
+    }
+
+    .form-channels {
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid var(--divider-color);
+    }
+
+    .form-channels-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--light-text);
+      margin-bottom: 12px;
+    }
+
+    .form-channels-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .form-channels-links a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--dark-text);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 12px;
+      border: 1px solid var(--divider-color);
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+
+    .form-channels-links a:hover {
+      background-color: var(--dark-text);
+      color: var(--white);
+      border-color: var(--dark-text);
+    }
+
+    /* Testimonials Section */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-top: 56px;
+    }
+
+    .testimonial {
+      background-color: var(--white);
+      padding: 32px;
+      border-radius: 4px;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    }
+
+    .testimonial-quote {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--medium-text);
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--dark-text);
+      margin-bottom: 4px;
+    }
+
+    .testimonial-role {
+      font-size: 12px;
+      color: var(--light-text);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: url('https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=1280&h=600&fit=crop') center/cover no-repeat, linear-gradient(135deg, rgba(131, 70, 46, 0.7) 0%, rgba(27, 28, 26, 0.5) 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 120px 72px;
+      position: relative;
+    }
+
+    .cta-section h2 {
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 32px;
+      font-family: 'Georgia', serif;
+    }
+
+    .cta-section p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 48px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--white);
+      border-top: 1px solid var(--divider-color);
+      padding: 88px 72px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-section h3 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--dark-text);
+      margin-bottom: 24px;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section li {
+      margin-bottom: 16px;
+    }
+
+    .footer-section a {
+      text-decoration: none;
+      color: var(--medium-text);
+      font-size: 14px;
+      transition: color 0.3s;
+    }
+
+    .footer-section a:hover {
+      color: var(--primary-brown);
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .footer-logo {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--dark-text);
+    }
+
+    .footer-tagline {
+      font-size: 12px;
+      color: var(--light-text);
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .footer-socials a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background-color: var(--off-white);
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+
+    .footer-socials a:hover {
+      background-color: var(--primary-brown);
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--divider-color);
+      padding-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--light-text);
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-bottom-links a {
+      text-decoration: none;
+      color: var(--light-text);
+      transition: color 0.3s;
+    }
+
+    .footer-bottom-links a:hover {
+      color: var(--primary-brown);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        padding: 16px 24px;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      section {
+        padding: 56px 24px;
+      }
+
+      .about-container,
+      .form-container {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item:nth-child(1) {
+        grid-column: span 1;
+      }
+
+      .form-card {
+        padding: 32px;
+      }
+
+      .hero {
+        padding: 24px;
+        height: auto;
+        min-height: 70vh;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .cta-section {
+        padding: 56px 24px;
+      }
+
+      .cta-section h2 {
+        font-size: 32px;
+      }
+
+      footer {
+        padding: 56px 24px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <div class="logo-name">SRI MAHALAKSHMI STUDIO</div>
+      <div class="logo-tagline">Professional Photography Since 1998</div>
+    </div>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#services">Services</a>
+    </nav>
+    <div class="header-cta">
+      <a href="#contact" class="btn-secondary">Inquire</a>
+      <button class="btn-secondary">Menu</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">26 Years of Excellence in Photography</div>
+      <h1>Capturing Life's Most Precious Moments</h1>
+      <p>Sri Mahalakshmi Studio has been preserving memories since 1998. From weddings to family celebrations, we capture the essence and emotion of your special moments with professional expertise and artistic vision.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn-primary">Inquire Now →</a>
+        <a href="#work" class="btn-secondary-light">View Our Portfolio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section" id="about">
+    <div class="about-container">
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=600&h=600&fit=crop" alt="Professional Photographer">
+      </div>
+      <div class="about-text">
+        <div class="section-label">About Us</div>
+        <h3>26 Years of Professional Photography Excellence</h3>
+        <p>Since 1998, Sri Mahalakshmi Studio has been the trusted name for professional photography in Nerkuppai and beyond. We specialize in capturing the authentic beauty of weddings, family celebrations, corporate events, and life's most cherished milestones with technical precision and artistic sensitivity.</p>
+        <p>Over 1500 events captured and countless families trust us with their memories. Our commitment is simple: to preserve your precious moments with the highest quality, ensuring that every photograph tells your unique story and stands the test of time.</p>
+        <p>With state-of-the-art equipment and decades of experience, we deliver professional-grade photography that goes beyond just images—we create treasured heirlooms that families will cherish for generations to come.</p>
+        <a href="#contact" class="btn-primary" style="margin-top: 24px;">Book Your Session →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements Section -->
+  <section class="achievements">
+    <div class="section-header">
+      <div class="section-label">Our Journey Together</div>
+      <h2 class="section-title">A Few Numbers. A Lot of Memories.</h2>
+      <p class="section-subtitle">Every number here represents a family, a celebration, a story, and a memory we were trusted to capture.</p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">1,500+</div>
+        <div class="stat-label">Events Captured</div>
+        <div class="stat-description">Weddings, celebrations, and family milestones</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Happy Clients</div>
+        <div class="stat-description">Families and celebrations we've been honored to serve</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">26+</div>
+        <div class="stat-label">Years of Excellence</div>
+        <div class="stat-description">Professional photography since 1998</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">10,000+</div>
+        <div class="stat-label">Moments Preserved</div>
+        <div class="stat-description">Smiles, celebrations, and precious memories</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="work">
+    <div class="gallery-header">
+      <div class="section-header" style="margin-bottom: 0;">
+        <div class="section-label">Visual Archive</div>
+        <h2 class="section-title">Selected Portfolios</h2>
+        <p class="section-subtitle">A curated selection of our documentary and fine art work across weddings, family portraits, and editorial projects.</p>
+      </div>
+      <div class="gallery-filters">
+        <button class="filter-btn active">All</button>
+        <button class="filter-btn">Weddings</button>
+        <button class="filter-btn">Families</button>
+        <button class="filter-btn">Studio</button>
+        <button class="filter-btn">Editorial</button>
+        <button class="filter-btn">Prints</button>
+      </div>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=500&fit=crop" alt="Wedding Reception">
+        <div class="gallery-overlay">
+          <div class="gallery-title">The Courtyard Dinner Under Midsummer Lights</div>
+          <div class="gallery-description">Candid laughter with guests, authentic documentary captures</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=500&h=600&fit=crop" alt="Family Portrait">
+        <div class="gallery-overlay">
+          <div class="gallery-title">Three Generations on the Garden Bench</div>
+          <div class="gallery-description">Unposed, organic family warmth</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?w=500&h=600&fit=crop" alt="Golden Hour Couple">
+        <div class="gallery-overlay">
+          <div class="gallery-title">Golden Ridge Sunset Embrace</div>
+          <div class="gallery-description">Wind, unscripted giggles, and sun-drenched hills</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1509927083788-a4e80e02a18d?w=500&h=600&fit=crop" alt="Wedding Details">
+        <div class="gallery-overlay">
+          <div class="gallery-title">Keepsakes & Archival Artifacts</div>
+          <div class="gallery-description">Handmade stationery, heirloom rings and floral textures</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&h=600&fit=crop" alt="Studio Portrait">
+        <div class="gallery-overlay">
+          <div class="gallery-title">Quiet Daylight Monograph</div>
+          <div class="gallery-description">Observational studio studies focused on calm presence</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form Section -->
+  <section class="form-section" id="contact">
+    <div class="form-container">
+      <div class="form-image">
+        <img src="https://images.unsplash.com/photo-1519671482677-11fbb9b4e4f9?w=600&h=900&fit=crop" alt="Celebration Moment" style="opacity: 0.8;">
+        <div class="availability-badge">
+          Limited Availability
+        </div>
+        <div class="form-image-note">
+          <h3>Your Special Moments Matter.</h3>
+          <p>Sri Mahalakshmi Studio is dedicated to capturing the joy, emotion, and beauty of your celebration with professional excellence and personal attention.</p>
+        </div>
+      </div>
+      
+      <div class="form-card">
+        <div class="form-header">
+          <div class="section-label">Get in Touch</div>
+          <h2>Let's Capture Your Celebration</h2>
+          <p class="form-description">Whether it's a wedding, birthday, family function, or any special occasion—Sri Mahalakshmi Studio is here to preserve your precious moments. Share your details and we'll get back to you soon with available dates and packages.</p>
+        </div>
+
+        <form id="inquiryForm">
+          <div id="formMessage" class="form-message"></div>
+
+          <div class="form-group">
+            <label class="form-label">Your Name *</label>
+            <input 
+              type="text" 
+              name="name" 
+              class="form-input" 
+              placeholder="Enter your name"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email Address *</label>
+            <input 
+              type="email" 
+              name="email" 
+              class="form-input" 
+              placeholder="Enter your email"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Phone Number *</label>
+            <input 
+              type="tel" 
+              name="phone" 
+              class="form-input" 
+              placeholder="Enter your phone number"
+              required
+            >
+          </div>
+
+          <button type="submit" class="form-submit" id="submitBtn">
+            Send Inquiry →
+          </button>
+
+          <p class="form-note">We'll review your inquiry and get back to you within 48 hours.</p>
+
+          <div class="form-channels">
+            <p class="form-channels-title">Or reach out directly:</p>
+            <div class="form-channels-links">
+              <a href="mailto:srimahalakshmistudio1976@gmail.com">📧 Email</a>
+              <a href="tel:+919842839640">📞 Call</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section>
+    <div class="section-header">
+      <div class="section-label">Client Stories</div>
+      <h2 class="section-title">Words From People We've Worked With</h2>
+      <p class="section-subtitle">Genuine messages from clients who trusted us with their once-in-a-lifetime milestones.</p>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="testimonial-quote">"Right from the first conversation, everything felt so easy. On the day of the event, we didn't even feel like we were posing for photographs. They just captured everything naturally. We absolutely loved the final photos."</div>
+        <div class="testimonial-author">Priya & Arjun</div>
+        <div class="testimonial-role">Wedding Celebration</div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-quote">"We were honestly worried that our little one wouldn't cooperate for the shoot. But the team was so patient and made the whole experience fun. We got some beautiful photographs that we'll always keep close to us."</div>
+        <div class="testimonial-author">Karthik & Divya</div>
+        <div class="testimonial-role">Family Session</div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-quote">"The photographs brought back so many memories when we saw them. That's probably the best thing about good photography—you don't just see a picture, you remember how that moment felt."</div>
+        <div class="testimonial-author">Meena</div>
+        <div class="testimonial-role">Celebration & Portraits</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="cta-section">
+    <h2>Ready to Book Your Photography Session?</h2>
+    <p>Connect with Sri Mahalakshmi Studio today. With 26 years of experience and over 1500 events captured, we're ready to preserve your most precious moments with professional excellence.</p>
+    <div class="cta-buttons">
+      <a href="#contact" class="btn-primary">Fill the Inquiry Form</a>
+      <a href="mailto:srimahalakshmistudio1976@gmail.com" class="btn-secondary-light">Send Email</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div>
+        <div class="footer-brand">
+          <div class="footer-logo">SRI MAHALAKSHMI STUDIO</div>
+          <div class="footer-tagline">Professional Photography Since 1998</div>
+        </div>
+        <p style="font-size: 13px; line-height: 1.6; color: var(--medium-text); margin-bottom: 16px;">Over 26 years of excellence in capturing life's precious moments. Trusted by 1500+ families for weddings, celebrations, and cherished memories.</p>
+        <div class="footer-socials">
+          <a href="#" title="Instagram">📷</a>
+          <a href="#" title="Portfolio">🖼️</a>
+          <a href="#" title="Journal">📝</a>
+          <a href="#" title="Contact">✉️</a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h3>Exploration</h3>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About Atelier</a></li>
+          <li><a href="#work">Selected Portfolios</a></li>
+          <li><a href="#">Press & Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Services & Practice</h3>
+        <ul>
+          <li><a href="#">Editorial & Fashion Documentaries</a></li>
+          <li><a href="#">Fine Art Silver Gelatin Portraits</a></li>
+          <li><a href="#">Architectural & Spatial Commissions</a></li>
+          <li><a href="#">Limited Monograph Publishing</a></li>
+          <li><a href="#">Darkroom Archival Print Sales</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Studio & Inquiries</h3>
+        <div style="font-size: 13px; line-height: 1.8; color: var(--medium-text);">
+          <p>Raja Veethi<br>Subbaiah Kovil Opposite<br>Nerkuppai - 630405</p>
+          <p>srimahalakshmistudio1976@gmail.com<br>+91 9842839640</p>
+          <a href="#contact" class="btn-secondary" style="display: inline-block; margin-top: 16px;">Get In Touch</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 1998-2024 Sri Mahalakshmi Studio. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Site Credits</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzFwV9OGcgMuOieNG1s9xwL3wHj2Z-fa10yQgpR36cDcKRRuc8eXyxiD3rZ6Qn2iebv/exec';
+
+    const form = document.getElementById('inquiryForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const formMessage = document.getElementById('formMessage');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Get form values
+      const name = document.querySelector('input[name="name"]').value.trim();
+      const email = document.querySelector('input[name="email"]').value.trim();
+      const phone = document.querySelector('input[name="phone"]').value.trim();
+
+      // Validate
+      if (!name || !email || !phone) {
+        showError('Please fill in all required fields.');
+        return;
+      }
+
+      // Disable button during submission
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      // Build URL with query parameters
+      const url = APPS_SCRIPT_URL + '?' + new URLSearchParams({
+        name: name,
+        email: email,
+        phone: phone
+      }).toString();
+
+      // Send via fetch with GET and no-cors
+      fetch(url, {
+        method: 'GET',
+        mode: 'no-cors'
+      })
+        .then(() => {
+          // Success - don't check response, just show success
+          showSuccess();
+          form.reset();
+        })
+        .catch(() => {
+          // Error
+          showError('There was an error sending your inquiry. Please try again.');
+        })
+        .finally(() => {
+          // Re-enable button
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Inquiry →';
+        });
+    });
+
+    function showSuccess() {
+      formMessage.className = 'form-message success';
+      formMessage.textContent = '✓ Thank you! We\'ve received your inquiry and will be in touch within 48 hours.';
+      formMessage.style.display = 'block';
+      
+      // Scroll to message
+      formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      // Clear message after 6 seconds
+      setTimeout(() => {
+        formMessage.style.display = 'none';
+      }, 6000);
+    }
+
+    function showError(message) {
+      formMessage.className = 'form-message error';
+      formMessage.textContent = '✕ ' + message;
+      formMessage.style.display = 'block';
+      
+      // Scroll to message
+      formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  </script>
+</body>
+</html>
